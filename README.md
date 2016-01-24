@@ -16,44 +16,44 @@ You will then have to configure your karma config:
 
 ```javascript
 module.exports = config => {
-	config.set({
-		// 1. Load this karma plugin
-		frameworks : ['mocha-webworker'],
+  config.set({
+    // 1. Load this karma plugin
+    frameworks : ['mocha-webworker'],
 
-		// 2. Configure the files you would like karma to serve.
-		//    Make sure you set `included` to `false`. Otherwise karma
-		//    will execute your scripts outside of the WebWorker.
-		files      : [
-			{pattern: 'test/my-test-case.js', included: false},
-			{pattern: 'test/more-test-cases/*.js', included: false}
-		],
+    // 2. Configure the files you would like karma to serve.
+    //    Make sure you set `included` to `false`. Otherwise karma
+    //    will execute your scripts outside of the WebWorker.
+    files      : [
+      {pattern: 'test/my-test-case.js', included: false},
+      {pattern: 'test/more-test-cases/*.js', included: false}
+    ],
 
-		client     : {
-			// 3. Configure the URLs that this plugin should execute
-			//    within a WebWorker for you. These patterns are
-			//    matched (using minimatch) on the `config.files`
-			//    array configured in step 2.
-			//    If you omit `pattern`, all URLs will be executed.
-			mochaWebWorker: {
-				pattern : [
-					'test/my-test-case.js',
-					'test/more-test-cases/*.js'
-				],
-				// You can also pass some options to mocha:
-				mocha   : {
-					ui: 'tdd'
-				},
-				// You can also evaluate javascript code within the Worker at various stages:
-				evaluate: {
-					beforeMochaImport: 'self.console.log("Before the mocha script is imported")',
-					beforeMochaSetup : 'self.console.log("Before mocha is setup (mocha.setup())")',
-					beforeScripts    : 'self.console.log("Before your scripts are imported")',
-					beforeRun        : 'self.console.log("Before your tests are run (mocha.run())")',
-					afterRun         : 'self.console.log("After your tests have been run")'
-				}
-			}
-		}
-	});
+    client     : {
+      // 3. Configure the URLs that this plugin should execute
+      //    within a WebWorker for you. These patterns are
+      //    matched (using minimatch) on the `config.files`
+      //    array configured in step 2.
+      //    If you omit `pattern`, all URLs will be executed.
+      mochaWebWorker: {
+        pattern : [
+          'test/my-test-case.js',
+          'test/more-test-cases/*.js'
+        ],
+        // You can also pass some options to mocha:
+        mocha   : {
+          ui: 'tdd'
+        },
+        // You can also evaluate javascript code within the Worker at various stages:
+        evaluate: {
+          beforeMochaImport: 'self.console.log("Before the mocha script is imported")',
+          beforeMochaSetup : 'self.console.log("Before mocha is setup (mocha.setup())")',
+          beforeScripts    : 'self.console.log("Before your scripts are imported")',
+          beforeRun        : 'self.console.log("Before your tests are run (mocha.run())")',
+          afterRun         : 'self.console.log("After your tests have been run")'
+        }
+      }
+    }
+  });
 };
 ```
 
