@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "pretest": "grunt",
-    "test": "karma start test/defaults.conf.js; karma start test/fail-and-skip.conf.js; echo; echo '!!! expecting 1 failed, 2 skipped, 2 success (per browser) !!!'; echo; karma start test/with-pattern.conf.js; karma start test/grep.conf.js; karma start test/mocha-options.conf.js",
+    "test": "karma start test/defaults.conf.js; karma start test/fail-and-skip.conf.js; echo; echo '!!! expecting 1 failed, 2 skipped, 2 success (per browser) !!!'; echo; karma start test/with-pattern.conf.js; karma start test/grep.conf.js; karma start test/mocha-options.conf.js; karma start test/with-evaluate.conf.js",
     "prepublish": "grunt build"
   },
   "repository": {

@@ -35,13 +35,21 @@ module.exports = config => {
 			//    array configured in step 2.
 			//    If you omit `pattern`, all URLs will be executed.
 			mochaWebWorker: {
-				pattern: [
+				pattern : [
 					'test/my-test-case.js',
 					'test/more-test-cases/*.js'
 				],
 				// You can also pass some options to mocha:
-				mocha  : {
+				mocha   : {
 					ui: 'tdd'
+				},
+				// You can also evaluate javascript code within the Worker at various stages:
+				evaluate: {
+					beforeMochaImport: 'self.console.log("Before the mocha script is imported")',
+					beforeMochaSetup : 'self.console.log("Before mocha is setup (mocha.setup())")',
+					beforeScripts    : 'self.console.log("Before your scripts are imported")',
+					beforeRun        : 'self.console.log("Before your tests are run (mocha.run())")',
+					afterRun         : 'self.console.log("After your tests have been run")'
 				}
 			}
 		}
