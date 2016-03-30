@@ -7,7 +7,7 @@ Using this plugin you can test your javascript code for WebWorker compatibility.
 Install the module and save it as a `devDependency`:
 
 ```bash
-npm install karma-mocha-web-worker --save-dev
+npm install karma-mocha-webworker --save-dev
 ```
 
 Instructions on how to install `karma` can be found [here](http://karma-runner.github.io/0.12/intro/installation.html).
