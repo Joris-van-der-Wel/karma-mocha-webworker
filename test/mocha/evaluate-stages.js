@@ -1,12 +1,12 @@
 /* globals describe, it, self */
 'use strict';
 
-describe('karma-mocha-webworker', function() {
-        it('should succeed', function() {
+describe('karma-mocha-webworker', () => {
+        it('should succeed', () => {
                 console.log('Executed "should succeed"');
         });
 
-        it('should have fired the proper evaluate stages', function() {
+        it('should have fired the proper evaluate stages', () => {
                 if (!self.testBeforeMochaImport) {
                         throw Error('Should have fired beforeMochaImport');
                 }

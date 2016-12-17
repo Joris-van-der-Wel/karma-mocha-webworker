@@ -2,38 +2,32 @@
 
 const path = require('path');
 const fs = require('fs');
+
 const pkg = require('./package.json');
 
 module.exports = grunt => {
         grunt.initConfig({
-                pkg        : pkg,
-                jshint     : {
-                        options: pkg.jshintConfig,
-                        src    : ['*.js', 'lib/**/*.js', 'test/**/*.js']
+                pkg: pkg,
+                eslint: {
+                        target: ['*.js', 'lib/**/*.js', 'test/**/*.js'],
                 },
-                jscs       : {
-                        options: {
-                                config: true // default loading
-                        },
-                        src    : ['*.js', 'lib/**/*.js', 'test/**/*.js']
-                },
-                browserify : {
+                browserify: {
                         options: {
                                 transform: [
                                         ['babelify', {
-                                                presets: ['es2015']
-                                        }]
-                                ]
+                                                presets: ['es2015'],
+                                        }],
+                                ],
                         },
-                        worker : {
-                                src    : 'lib/worker.js',
-                                dest   : 'karma-mocha-webworker-client/worker.js'
+                        worker: {
+                                src: 'lib/worker.js',
+                                dest: 'karma-mocha-webworker-client/worker.js',
                         },
                         adapter: {
-                                src    : 'lib/adapter.js',
-                                dest   : 'karma-mocha-webworker-client/adapter.js'
-                        }
-                }
+                                src: 'lib/adapter.js',
+                                dest: 'karma-mocha-webworker-client/adapter.js',
+                        },
+                },
         });
 
         // (so that we can test)
@@ -58,10 +52,9 @@ module.exports = grunt => {
 
 
         grunt.loadNpmTasks('grunt-browserify');
-        grunt.loadNpmTasks('grunt-contrib-jshint');
-        grunt.loadNpmTasks('grunt-jscs');
+        grunt.loadNpmTasks('grunt-eslint');
 
         grunt.registerTask('build', ['browserify:adapter', 'browserify:worker']);
-        grunt.registerTask('lint', ['jshint', 'jscs']);
+        grunt.registerTask('lint', ['eslint']);
         grunt.registerTask('default', ['create-self-referencing-module', 'lint', 'build']);
 };

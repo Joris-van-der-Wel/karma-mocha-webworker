@@ -1,16 +1,16 @@
 /* globals describe, it */
 'use strict';
 
-describe('karma-mocha-webworker', function() {
-        it('should succeed', function() {
+describe('karma-mocha-webworker', () => {
+        it('should succeed', () => {
                 console.log('Executed "should succeed"');
         });
 
-        it('should fail', function() {
+        it('should fail', () => {
                 throw Error('should fail');
         });
 
-        it.skip('should be skipped', function() {
+        it.skip('should be skipped', () => {
                 throw Error('should have been skipped');
         });
 
@@ -19,7 +19,7 @@ describe('karma-mocha-webworker', function() {
                 throw Error('should have been skipped');
         });
 
-        it('there should be no global `window` object during tests', function(){
+        it('there should be no global `window` object during tests', () => {
                 if (typeof window !== 'undefined') {
                         throw Error('window should be undefined');
                 }
