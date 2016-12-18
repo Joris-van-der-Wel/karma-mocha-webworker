@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/Joris-van-der-Wel/karma-mocha-webworker#readme",
   "dependencies": {
+    "jsonbird": "^2.0.0",
     "minimatch": "^3.0.3"
   },
   "peerDependencies": {

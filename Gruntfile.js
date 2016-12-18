@@ -16,6 +16,8 @@ module.exports = grunt => {
                                 transform: [
                                         ['babelify', {
                                                 presets: ['es2015'],
+                                                global: true,
+                                                ignore: /\/node_modules\/(?!jsonbird\/)/,
                                         }],
                                 ],
                         },
