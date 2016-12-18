@@ -5,6 +5,7 @@ const {Server} = require('karma');
 
 const run = (configFile, expectedBrowserResult) => new Promise(resolve => {
         const results = [];
+        let browserFailures = 0;
 
         const done = () => {
                 console.log(`[karma-mocha-webworker] [${configFile}] Karma has completed all browser runs`);
@@ -22,7 +23,7 @@ const run = (configFile, expectedBrowserResult) => new Promise(resolve => {
                         }
                 }
 
-                resolve({results, failures});
+                resolve({results, failures, browserFailures});
         };
 
         const server = new Server({configFile: require.resolve(configFile)}, done);
@@ -46,6 +47,14 @@ const run = (configFile, expectedBrowserResult) => new Promise(resolve => {
                 });
         });
 
+        server.on('browser_restart_failure', () => {
+                ++browserFailures;
+        });
+
+        server.on('browser_process_failure', () => {
+                ++browserFailures;
+        });
+
         server.start();
 });
 
@@ -58,19 +67,26 @@ const runs = [
         ['./with-pattern.conf.js', {success: 1, failed: 0, skipped: 0, total: 1, error: false, disconnected: false}],
 ];
 
+let totalFailures = 0;
+let totalBrowserFailures = 0;
+
 runs.reduce(
         (promise, [configFile, expectedBrowserResult]) => promise
-                .then(totalFailures => run(configFile, expectedBrowserResult).then(result => totalFailures + result.failures)
+                .then(() => run(configFile, expectedBrowserResult).then(result => {
+                        totalFailures += result.failures;
+                        totalBrowserFailures += result.browserFailures;
+                })
         ),
-        Promise.resolve(0)
+        Promise.resolve()
 )
-.then(totalFailures => {
+.then(() => {
         console.log();
         console.log();
         console.log(`[karma-mocha-webworker] All runs with all config files have been completed`);
         console.log(`[karma-mocha-webworker] There were a total of ${totalFailures} failures`);
+        console.log(`[karma-mocha-webworker] There were a total of ${totalBrowserFailures} failures when attempting to start a browser`);
 
-        if (totalFailures > 0) {
+        if (totalFailures > 0 || totalBrowserFailures > 0) {
                 process.exitCode = 2;
         }
 });
