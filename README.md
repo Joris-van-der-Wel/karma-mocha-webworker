@@ -1,4 +1,6 @@
 # karma-mocha-web-worker
+![Travis CI Build Status](https://api.travis-ci.org/Joris-van-der-Wel/karma-mocha-webworker.svg?branch=master)
+
 Karma plugin which runs your mocha tests in a WebWorker.
 
 Using this plugin you can test your javascript code for WebWorker compatibility.
