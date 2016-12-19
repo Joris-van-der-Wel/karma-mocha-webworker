@@ -1,5 +1,5 @@
 # karma-mocha-web-worker
-![Travis CI Build Status](https://api.travis-ci.org/Joris-van-der-Wel/karma-mocha-webworker.svg?branch=master)
+[![Travis CI Build Status](https://api.travis-ci.org/Joris-van-der-Wel/karma-mocha-webworker.svg?branch=master)](https://travis-ci.org/Joris-van-der-Wel/karma-mocha-webworker)
 
 Karma plugin which runs your mocha tests in a WebWorker.
 
