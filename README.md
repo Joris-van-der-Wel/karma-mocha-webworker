@@ -66,3 +66,6 @@ To run only some test cases matching a given pattern, you can use:
 karma start &
 karma run -- --grep foo
 ```
+
+## Google Chrome Caveat
+Google Chrome currently (tested up to v55) does not pass on stack information when an error occurs within a script loaded into a Web Worker (e.g. `importScripts(['foo.js'])`). So if your script contains a syntax error or a runtime error, the stack will point at a line within karma-mocha-webworker. You can workaround this issue by using Firefox.
