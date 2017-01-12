@@ -14,8 +14,8 @@ module.exports = config => {
                 client: {
                         mochaWebWorker: {
                                 worker: 'SharedWorker',
-                                pattern : [
-                                        'test/mocha/simple.js'
+                                pattern: [
+                                        'test/mocha/simple.js',
                                 ],
                         },
                 },
