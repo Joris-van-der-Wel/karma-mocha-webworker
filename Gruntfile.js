@@ -60,7 +60,7 @@ module.exports = grunt => {
         grunt.loadNpmTasks('grunt-browserify');
         grunt.loadNpmTasks('grunt-eslint');
 
-        grunt.registerTask('build', ['browserify:adapter', 'browserify:worker']);
+        grunt.registerTask('build', ['browserify:adapter', 'browserify:worker', 'browserify:sharedWorker']);
         grunt.registerTask('lint', ['eslint']);
         grunt.registerTask('default', ['create-self-referencing-module', 'lint', 'build']);
 };
