@@ -25,6 +25,10 @@ module.exports = grunt => {
                                 src: 'lib/worker.js',
                                 dest: 'karma-mocha-webworker-client/worker.js',
                         },
+                        sharedWorker: {
+                                src: 'lib/shared-worker.js',
+                                dest: 'karma-mocha-webworker-client/shared-worker.js',
+                        },
                         adapter: {
                                 src: 'lib/adapter.js',
                                 dest: 'karma-mocha-webworker-client/adapter.js',

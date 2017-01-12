@@ -25,6 +25,6 @@ module.exports = config => {
                 logLevel: config.LOG_DEBUG,
 
                 browsers: ['Chrome'],
-                singleRun: false,
+                singleRun: true,
         });
 };
