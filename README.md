@@ -42,6 +42,7 @@ module.exports = config => {
           'test/more-test-cases/*.js'
         ],
         // You can also use a SharedWorker for test execution
+        // instead of the default 'Worker'
         worker: 'SharedWorker',
         // You can also pass some options to mocha:
         mocha   : {
