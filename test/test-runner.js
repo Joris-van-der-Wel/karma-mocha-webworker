@@ -58,7 +58,10 @@ const run = (configFile, expectedBrowserResult) => new Promise(resolve => {
         server.start();
 });
 
-const runs = [
+/**
+ *  All test suites
+ */
+let runs = [
         ['./defaults.conf.js', {success: 1, failed: 0, skipped: 0, total: 1, error: false, disconnected: false}],
         ['./fail-and-skip.conf.js', {success: 2, failed: 1, skipped: 2, total: 5, error: false, disconnected: false}],
         ['./grep.conf.js', {success: 1, failed: 0, skipped: 0, total: 1, error: false, disconnected: false}],
@@ -66,7 +69,22 @@ const runs = [
         ['./with-evaluate.conf.js', {success: 2, failed: 0, skipped: 0, total: 2, error: false, disconnected: false}],
         ['./with-pattern.conf.js', {success: 1, failed: 0, skipped: 0, total: 1, error: false, disconnected: false}],
         ['./script-import-error.conf.js', {success: 0, failed: 0, skipped: 0, total: 0, error: true, disconnected: false}],
+        ['./shared-worker.conf.js', {success: 1, failed: 0, skipped: 0, total: 1, error: false, disconnected: false}],
 ];
+
+/**
+ * Filter test suites if process.env.TEST is set
+ */
+if (process.env.TEST) {
+        runs = runs.filter(value => {
+                return value[0].match(process.env.TEST);
+        });
+
+        if (runs.length === 0) {
+                console.error(`[karma-mocha-webworker] No test matched with ${process.env.TEST}`);
+                process.exit(1);
+        }
+}
 
 let totalFailures = 0;
 let totalBrowserFailures = 0;
