@@ -25,6 +25,10 @@ module.exports = grunt => {
                                 src: 'lib/worker.js',
                                 dest: 'karma-mocha-webworker-client/worker.js',
                         },
+                        sharedWorker: {
+                                src: 'lib/shared-worker.js',
+                                dest: 'karma-mocha-webworker-client/shared-worker.js',
+                        },
                         adapter: {
                                 src: 'lib/adapter.js',
                                 dest: 'karma-mocha-webworker-client/adapter.js',
@@ -56,7 +60,7 @@ module.exports = grunt => {
         grunt.loadNpmTasks('grunt-browserify');
         grunt.loadNpmTasks('grunt-eslint');
 
-        grunt.registerTask('build', ['browserify:adapter', 'browserify:worker']);
+        grunt.registerTask('build', ['browserify:adapter', 'browserify:worker', 'browserify:sharedWorker']);
         grunt.registerTask('lint', ['eslint']);
         grunt.registerTask('default', ['create-self-referencing-module', 'lint', 'build']);
 };
