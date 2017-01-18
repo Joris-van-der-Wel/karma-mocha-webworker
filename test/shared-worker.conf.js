@@ -9,6 +9,7 @@ module.exports = config => {
 
                 files: [
                         {pattern: 'test/mocha/simple.js', included: false},
+                        {pattern: 'test/mocha/assert-type-shared.js', included: false},
                 ],
 
                 client: {
@@ -16,6 +17,7 @@ module.exports = config => {
                                 worker: 'SharedWorker',
                                 pattern: [
                                         'test/mocha/simple.js',
+                                        'test/mocha/assert-type-shared.js',
                                 ],
                         },
                 },

@@ -9,6 +9,7 @@ module.exports = config => {
 
                 files: [
                         {pattern: 'test/mocha/simple.js', included: false},
+                        {pattern: 'test/mocha/assert-type-dedicated.js', included: false},
                 ],
 
                 reporters: ['progress'],
